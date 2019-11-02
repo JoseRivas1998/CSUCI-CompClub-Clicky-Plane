@@ -6,14 +6,20 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.csuci.clickyplane.gamestates.GameStateType;
+import edu.csuci.clickyplane.managers.ContentManager;
 import edu.csuci.clickyplane.managers.GameStateManager;
 
 public class ClickyPlane extends ApplicationAdapter {
 
+	public static final int WORLD_WIDTH = 1280;
+	public static final int WORLD_HEIGHT = 720;
+
 	private GameStateManager gsm;
+	public static ContentManager content;
 
 	@Override
 	public void create () {
+		content = new ContentManager();
 		this.gsm = new GameStateManager(GameStateType.PLAY);
 	}
 
@@ -32,6 +38,7 @@ public class ClickyPlane extends ApplicationAdapter {
 
 	@Override
 	public void dispose () {
+		content.dispose();
 		this.gsm.dispose();
 	}
 }
