@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import edu.csuci.clickyplane.gamestates.GameStateType;
 import edu.csuci.clickyplane.managers.ContentManager;
 import edu.csuci.clickyplane.managers.GameStateManager;
+import edu.csuci.clickyplane.managers.input.MyInput;
+import edu.csuci.clickyplane.managers.input.MyInputProcessor;
 
 public class ClickyPlane extends ApplicationAdapter {
 
@@ -21,14 +23,18 @@ public class ClickyPlane extends ApplicationAdapter {
 	public void create () {
 		content = new ContentManager();
 		this.gsm = new GameStateManager(GameStateType.PLAY);
+		Gdx.input.setInputProcessor(new MyInputProcessor());
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 		float dt = Gdx.graphics.getDeltaTime();
 		this.gsm.step(dt);
+
+		MyInput.update();
 	}
 
 	@Override

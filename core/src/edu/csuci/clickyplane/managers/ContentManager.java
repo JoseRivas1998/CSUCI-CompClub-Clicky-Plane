@@ -11,7 +11,8 @@ public class ContentManager implements Disposable {
 
     public enum Image {
         PIPE_BODY("img/pipe_body.png"),
-        PIPE_TOP("img/pipe_top.png");
+        PIPE_TOP("img/pipe_top.png"),
+        PLANE_SPRITESHEET("img/plane_spritesheet.png");
         public final String path;
 
         Image(String path) {

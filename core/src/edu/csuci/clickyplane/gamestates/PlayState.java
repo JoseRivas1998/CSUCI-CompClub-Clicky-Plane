@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import edu.csuci.clickyplane.ClickyPlane;
 import edu.csuci.clickyplane.entities.DualPipe;
+import edu.csuci.clickyplane.entities.Plane;
 import edu.csuci.clickyplane.managers.GameStateManager;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class PlayState extends AbstractGameState {
     private List<DualPipe> pipes;
     private float pipeSpawnTimer;
 
+    private Plane plane;
+
     public PlayState(GameStateManager gsm) {
         super(gsm);
     }
@@ -31,15 +34,18 @@ public class PlayState extends AbstractGameState {
         pipes = new ArrayList<DualPipe>();
         pipeSpawnTimer = 0f;
 
+        plane = new Plane();
+
     }
 
     @Override
     public void handleInput(float dt) {
-
+        plane.handleInput();
     }
 
     @Override
     public void update(float dt) {
+        plane.update(dt);
         updatePipes(dt);
         spawnPipes(dt);
         viewport.apply(true);
@@ -72,6 +78,7 @@ public class PlayState extends AbstractGameState {
         for (DualPipe pipe : pipes) {
             pipe.draw(dt, sb, sr);
         }
+        plane.draw(dt, sb, sr);
         sb.end();
     }
 
@@ -86,5 +93,6 @@ public class PlayState extends AbstractGameState {
             pipe.dispose();
         }
         pipes.clear();
+        plane.dispose();
     }
 }
