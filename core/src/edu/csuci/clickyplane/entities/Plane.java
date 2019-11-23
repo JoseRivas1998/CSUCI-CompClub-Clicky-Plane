@@ -46,6 +46,7 @@ public class Plane extends AbstractSpriteEntity {
 
     public void jump() {
         setVelocityY(JUMP_SPEED);
+        ClickyPlane.content.playSound(ContentManager.SoundEffect.WING);
     }
 
     @Override
